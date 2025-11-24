@@ -22,32 +22,32 @@ describe('Password class, test suite', () => {
         const shortPasswordWithNumber = 'Pass1'
 
     //Add your tests here
-    test('simpleHash should return a number', () => {
+    test('simpleHash Should Return Number For Valid Password', () => {
         const pw = new Password(validPassword)
 
         expect(typeof pw.getPasswordHash()).toBe('number')
     })
 
-    test('constructor should trim whitespace', () => {
+    test('constructor Should Trim Whitespace For Password With Spaces', () => {
         const pw1 = new Password(validPassword)
         const pw2 = new Password(passwordWithSpaces)
 
         expect(pw1.getPasswordHash()).toBe(pw2.getPasswordHash())
     })
 
-    test('isPasswordSame should return false for different passwords', () => {
+    test('isPasswordSame Should Return False For Different Passwords', () => {
         const pw3 = new Password(validPassword)
         const pw4 = new Password(differentPassword)
         
         expect(pw3.isPasswordSame(pw4)).toBe(false)
     })
 
-    test('constructor should throw error for password that does not contain a number', () => {
+    test('constructor Should Throw Error For Password That Does Not Contain A Number', () => {
 
         expect(() => new Password(noNumberPassword)).toThrow('No number found')
     })
 
-    test('constructor should throw error for too short password', () => {
+    test('constructor Should Throw Error For Too Short Password', () => {
 
         expect(() => new Password(shortPasswordWithNumber)).toThrow('Too short password')
     })
