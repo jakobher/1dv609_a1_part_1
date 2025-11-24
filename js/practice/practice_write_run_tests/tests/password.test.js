@@ -4,8 +4,8 @@
 // import { Password } from '../src/BugDoesNotHash'
 // import { Password } from '../src/BugDoesNotTrim'
 // import { Password } from '../src/BugisPasswordAlwaysSame'
-import { Password } from '../src/BugMissingNumberCheck'
-// import { Password } from '../src/BugMissingPasswordCheck'
+// import { Password } from '../src/BugMissingNumberCheck'
+import { Password } from '../src/BugMissingPasswordCheck'
 // import { Password } from '../src/BugNeverContainsNumbers'
 // import { Password } from '../src/BugToShortPassword'
 // import { Password } from '../src/BugVeryShort'
@@ -19,6 +19,7 @@ describe('Password class, test suite', () => {
         const passwordWithSpaces = ' Password12345 '
         const differentPassword = 'Password23456'
         const noNumberPassword = 'PasswordWithoutNumber'
+        const shortPasswordWithNumber = 'Pass1'
 
     //Add your tests here
     test('simpleHash should return a number', () => {
@@ -41,9 +42,14 @@ describe('Password class, test suite', () => {
         expect(pw3.isPasswordSame(pw4)).toBe(false)
     })
 
-    test('constructor should check if password contains a number', () => {
+    test('constructor should throw error for password that does not contain a number', () => {
 
         expect(() => new Password(noNumberPassword)).toThrow('No number found')
+    })
+
+    test('constructor should throw error for too short password', () => {
+
+        expect(() => new Password(shortPasswordWithNumber)).toThrow('Too short password')
     })
 
 });
