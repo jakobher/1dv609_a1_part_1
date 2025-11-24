@@ -5,8 +5,8 @@
 // import { Password } from '../src/BugDoesNotTrim'
 // import { Password } from '../src/BugisPasswordAlwaysSame'
 // import { Password } from '../src/BugMissingNumberCheck'
-import { Password } from '../src/BugMissingPasswordCheck'
-// import { Password } from '../src/BugNeverContainsNumbers'
+// import { Password } from '../src/BugMissingPasswordCheck'
+import { Password } from '../src/BugNeverContainsNumbers'
 // import { Password } from '../src/BugToShortPassword'
 // import { Password } from '../src/BugVeryShort'
 // import { Password } from '../src/BugWrongHashingAlgorithm'
@@ -50,6 +50,11 @@ describe('Password class, test suite', () => {
     test('constructor Should Throw Error For Too Short Password', () => {
 
         expect(() => new Password(shortPasswordWithNumber)).toThrow('Too short password')
+    })
+
+    test('constructor Should Accept Valid Password With Numbers And Sufficent Length', () => {
+
+        expect(() => new Password(validPassword)).not.toThrow()
     })
 
 });
