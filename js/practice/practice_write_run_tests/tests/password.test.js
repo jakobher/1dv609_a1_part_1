@@ -6,12 +6,12 @@
 // import { Password } from '../src/BugisPasswordAlwaysSame'
 // import { Password } from '../src/BugMissingNumberCheck'
 // import { Password } from '../src/BugMissingPasswordCheck'
-import { Password } from '../src/BugNeverContainsNumbers'
+// import { Password } from '../src/BugNeverContainsNumbers'
 // import { Password } from '../src/BugToShortPassword'
 // import { Password } from '../src/BugVeryShort'
 // import { Password } from '../src/BugWrongHashingAlgorithm'
 // import { Password } from '../src/BugWrongMessage'
-// import { Password } from '../src/Correct'
+import { Password } from '../src/Correct'
 
 describe('Password class, test suite', () => {
     //put constants here to increase readability
@@ -20,6 +20,7 @@ describe('Password class, test suite', () => {
         const differentPassword = 'Password23456'
         const noNumberPassword = 'PasswordWithoutNumber'
         const shortPasswordWithNumber = 'Pass1'
+        const tooShortPassword = 'Password123'
 
     //Add your tests here
     test('simpleHash Should Return Number For Valid Password', () => {
@@ -55,6 +56,11 @@ describe('Password class, test suite', () => {
     test('constructor Should Accept Valid Password With Numbers And Sufficent Length', () => {
 
         expect(() => new Password(validPassword)).not.toThrow()
+    })
+
+    test('constructor Should Throw Error For Password Shorter Than 12 Characters', () => {
+
+        expect(() => new Password(tooShortPassword)).toThrow('Too short password')
     })
 
 });
