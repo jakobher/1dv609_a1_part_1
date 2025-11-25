@@ -58,9 +58,18 @@ describe('Password class, test suite', () => {
         expect(() => new Password(validPassword)).not.toThrow()
     })
 
-    test('constructor Should Throw Error For Password Shorter Than 12 Characters', () => {
+    // Catches both BugToShortPassword and BugVeryShort
+    test('constructor Should Throw Error For Password With 11 Characters', () => {
 
         expect(() => new Password(tooShortPassword)).toThrow('Too short password')
     })
+
+    test('getPasswordHash Should Return Correct Hash Value For Valid Password', () => {
+        const pw5 = new Password(validPassword)
+
+        // Expected hash for 'Password12345'
+        expect(pw5.getPasswordHash()).toBe(236497871505720570000)
+    })
+
 
 });
