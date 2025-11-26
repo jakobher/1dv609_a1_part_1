@@ -41,4 +41,21 @@ describe('SSNHelper Tests', () => {
         expect(SSN.isCorrectFormat('X3010111234')).toBe(false)
     })
 
+    test('isValidMonth Should Return True For 05 As Input', () => {
+        const SSN = new SSNHelper()
+
+        expect(SSN.isValidMonth('05')).toBe(true)
+    })
+
+    test('isValidMonth Should Return False For 00 As Input', () => {
+        const SSN = new SSNHelper()
+
+        expect(SSN.isValidMonth('00')).toBe(false)
+    })
+
+    test('isValidMonth Should Return False For 13 As Input', () => {
+        const SSN = new SSNHelper()
+
+        expect(SSN.isValidMonth('13')).toBe(false)
+    })
 });
