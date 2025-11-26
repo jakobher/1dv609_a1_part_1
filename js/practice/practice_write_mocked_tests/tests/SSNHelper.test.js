@@ -58,4 +58,22 @@ describe('SSNHelper Tests', () => {
 
         expect(SSN.isValidMonth('13')).toBe(false)
     })
+
+    test('isValidDay Should Return True For 15 As Input', () => {
+        const SSN = new SSNHelper()
+
+        expect(SSN.isValidDay('15')).toBe(true)
+    })
+
+    test('isValidDay Should Return False For 32 As Input', () => {
+        const SSN = new SSNHelper()
+
+        expect(SSN.isValidDay('32')).toBe(false)
+    })
+
+     test('isValidDay Should Return False For 00 As Input', () => {
+        const SSN = new SSNHelper()
+
+        expect(SSN.isValidDay('00')).toBe(false)
+    })
 });
