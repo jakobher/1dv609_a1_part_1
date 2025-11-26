@@ -11,10 +11,10 @@
 // import { Password } from '../src/BugVeryShort'
 // import { Password } from '../src/BugWrongHashingAlgorithm'
 // import { Password } from '../src/BugWrongMessage'
-import { Password } from '../src/Correct'
+// import { Password } from '../src/Correct'
+import { Password } from '../src/BugMyCustomBug'
 
 describe('Password class, test suite', () => {
-    //put constants here to increase readability
         const validPassword = 'Password12345'
         const passwordWithSpaces = ' Password12345 '
         const differentPassword = 'Password23456'
@@ -22,7 +22,6 @@ describe('Password class, test suite', () => {
         const shortPasswordWithNumber = 'Pass1'
         const tooShortPassword = 'Password123'
 
-    //Add your tests here
     test('simpleHash Should Return Number For Valid Password', () => {
         const pw = new Password(validPassword)
 
@@ -53,7 +52,7 @@ describe('Password class, test suite', () => {
         expect(() => new Password(shortPasswordWithNumber)).toThrow('Too short password')
     })
 
-    test('constructor Should Accept Valid Password With Numbers And Sufficent Length', () => {
+    test('constructor Should Accept Valid Password With Numbers And Sufficient Length', () => {
 
         expect(() => new Password(validPassword)).not.toThrow()
     })
@@ -70,6 +69,8 @@ describe('Password class, test suite', () => {
         // Expected hash for 'Password12345'
         expect(pw5.getPasswordHash()).toBe(236497871505720570000)
     })
+
+    // BugWrongMessage is covered already 
 
 
 });
