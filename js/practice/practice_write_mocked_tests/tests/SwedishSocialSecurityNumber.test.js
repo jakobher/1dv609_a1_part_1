@@ -3,6 +3,7 @@ import { SwedishSocialSecurityNumber } from '../src/correct/SwedishSocialSecurit
 // import { SwedishSocialSecurityNumber } from '../src/bugs/BuggySwedishSocialSecurityNumberNoLenCheck'
 // import { SwedishSocialSecurityNumber } from '../src/bugs/BuggySwedishSocialSecurityNumberNoTrim'
 // import { SwedishSocialSecurityNumber } from '../src/bugs/BuggySwedishSocialSecutityNumberNoLuhn'
+// import { SwedishSocialSecurityNumber } from '../src/bugs/BuggySwedishSocialSecutityNumberWrongYear'
 
 
 
@@ -49,6 +50,20 @@ describe('SwedishSocialSecurityNumber Tests', () => {
         expect(() => {
             new SwedishSocialSecurityNumber('930101-1234', mockHelper)
         }).toThrow("Invalid SSN according to Luhn's algorithm")
+    })
+
+    test('getYear Should Return Correct Year According To Input', () => {
+        const mockHelper = {
+            isCorrectLength: jest.fn().mockReturnValue(true),
+            isCorrectFormat: jest.fn().mockReturnValue(true),
+            isValidMonth: jest.fn().mockReturnValue(true),
+            isValidDay: jest.fn().mockReturnValue(true),
+            luhnisCorrect: jest.fn().mockReturnValue(true)
+        }
+
+        const ssn = new SwedishSocialSecurityNumber('930101-1236', mockHelper)
+
+        expect(ssn.getYear()).toBe('93')
     })
 
 });
