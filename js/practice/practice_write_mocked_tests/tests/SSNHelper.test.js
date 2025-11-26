@@ -2,11 +2,25 @@ import { SSNHelper } from '../src/correct/SSNHelper';
 
 
 
-describe('SSNHelpe Tests', () => {
+describe('SSNHelper Tests', () => {
+    
 
-    test('replace this test with one of your own', () => {
-        expect(true).toBe(true);
-    });
+    test('isCorrectLength Should Return True For 11 Characters', () => {
+        const SSN = new SSNHelper()
 
-    //Add your tests here
+        expect(SSN.isCorrectLength('930101-1234')).toBe(true)
+    })
+
+    test('isCorrectLength Should Return False for 10 Characters', () => {
+        const SSN = new SSNHelper()
+
+        expect(SSN.isCorrectLength('930101-123')).toBe(false)
+    })
+
+    test('isCorrectLength Should Return False For 12 Characters', () => {
+        const SSN = new SSNHelper()
+
+        expect(SSN.isCorrectLength('930101-12345')).toBe(false)
+    })
+
 });
