@@ -76,4 +76,16 @@ describe('SSNHelper Tests', () => {
 
         expect(SSN.isValidDay('00')).toBe(false)
     })
+
+    test('luhnisCorrect Should Return True With Valid SSN', () => {
+        const SSN = new SSNHelper()
+
+        expect(SSN.luhnisCorrect('930101-1236')).toBe(true)
+    })
+
+    test('luhnisCorrect Should Return False With Non Valid SSN', () => {
+        const SSN = new SSNHelper()
+
+        expect(SSN.luhnisCorrect('930101-1234')).toBe(false)
+    })
 });
