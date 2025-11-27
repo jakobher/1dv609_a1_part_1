@@ -5,6 +5,7 @@ import { jest } from '@jest/globals'
 // import { SwedishSocialSecurityNumber } from '../src/bugs/BuggySwedishSocialSecutityNumberNoLuhn'
 // import { SwedishSocialSecurityNumber } from '../src/bugs/BuggySwedishSocialSecutityNumberWrongYear'
 // import { SwedishSocialSecurityNumber } from '../src/bugs/BuggySwedishSocialSecurityNumberWrongSerialNumber'
+import { SwedishSocialSecurityNumber } from '../src/bugs/BuggySwedishSocialSecurityNumberInvalidDay'
 
 
 
@@ -79,6 +80,20 @@ describe('SwedishSocialSecurityNumber Tests', () => {
         const ssn = new SwedishSocialSecurityNumber('930101-1236', mockHelper)
 
         expect(ssn.getSerialNumber()).toBe('1236')
+    })
+
+    test('isValidDay Should Throw Exception For Invalid Day', () => {
+        const mockHelper = {
+            isCorrectLength: jest.fn().mockReturnValue(true),
+            isCorrectFormat: jest.fn().mockReturnValue(true),
+            isValidMonth: jest.fn().mockReturnValue(true),
+            isValidDay: jest.fn().mockReturnValue(false),
+            luhnisCorrect: jest.fn().mockReturnValue(true)
+        }
+
+        expect(() => {
+            new SwedishSocialSecurityNumber('930199-1236', mockHelper)
+        }).toThrow("Invalid day in SSN")
     })
 
 });

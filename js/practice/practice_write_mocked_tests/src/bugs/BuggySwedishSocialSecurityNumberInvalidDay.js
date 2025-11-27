@@ -1,7 +1,4 @@
 
-
-
-//Java Version 1 Correct Password
 class SwedishSocialSecurityNumber {
     #helper;
     #ssn;
@@ -11,7 +8,7 @@ class SwedishSocialSecurityNumber {
 
         const trimmedSS = stringInput.trim(); 
 
-        if (helper.isCorrectLength(trimmedSS) == false) {
+        if (helper.isCorrectLength(trimmedSS) === false) {
             throw new Error("To short, must be 11 characters");
         }
         if (helper.isCorrectFormat(trimmedSS) === false) {
@@ -23,28 +20,28 @@ class SwedishSocialSecurityNumber {
         if (helper.isValidMonth(this.getMonth()) === false) {
             throw new Error("Invalid month in SSN");
         }
-        if (helper.isValidDay(this.getDay()) === false) {
-            throw new Error("Invalid day in SSN");
-        }
+        // if (helper.isValidDay(this.getDay()) === false) {
+        //     throw new Error("Invalid day in SSN");
+        // }
         if (helper.luhnisCorrect(this.#ssn) === false) {
             throw new Error("Invalid SSN according to Luhn's algorithm");
         }
     }
 
     getYear() {
-        return this.#ssn.substring(1, 3); //YYMMDD-XXXX <-BUG
+        return this.#ssn.substring(0, 2); 
     }
 
     getMonth() {
-        return this.#ssn.substring(2, 4); //YYMMDD-XXXX
+        return this.#ssn.substring(2, 4); 
     }
 
     getDay() {
-        return this.#ssn.substring(4, 6); //YYMMDD-XXXX  0123456-8901
+        return this.#ssn.substring(4, 6);
     }
 
     getSerialNumber() {
-        return this.#ssn.substring(7, 11); //YYMMDD-XXXX
+        return this.#ssn.substring(7, 11); 
     }
 }
 
