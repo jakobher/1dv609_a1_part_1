@@ -1,9 +1,10 @@
 import { jest } from '@jest/globals'
-import { SwedishSocialSecurityNumber } from '../src/correct/SwedishSocialSecurityNumber'
+// import { SwedishSocialSecurityNumber } from '../src/correct/SwedishSocialSecurityNumber'
 // import { SwedishSocialSecurityNumber } from '../src/bugs/BuggySwedishSocialSecurityNumberNoLenCheck'
 // import { SwedishSocialSecurityNumber } from '../src/bugs/BuggySwedishSocialSecurityNumberNoTrim'
 // import { SwedishSocialSecurityNumber } from '../src/bugs/BuggySwedishSocialSecutityNumberNoLuhn'
 // import { SwedishSocialSecurityNumber } from '../src/bugs/BuggySwedishSocialSecutityNumberWrongYear'
+// import { SwedishSocialSecurityNumber } from '../src/bugs/BuggySwedishSocialSecurityNumberWrongSerialNumber'
 
 
 
@@ -64,6 +65,20 @@ describe('SwedishSocialSecurityNumber Tests', () => {
         const ssn = new SwedishSocialSecurityNumber('930101-1236', mockHelper)
 
         expect(ssn.getYear()).toBe('93')
+    })
+
+    test('getSerialNumber Should Return Correct Serial Number', () => {
+        const mockHelper = {
+            isCorrectLength: jest.fn().mockReturnValue(true),
+            isCorrectFormat: jest.fn().mockReturnValue(true),
+            isValidMonth: jest.fn().mockReturnValue(true),
+            isValidDay: jest.fn().mockReturnValue(true),
+            luhnisCorrect: jest.fn().mockReturnValue(true)
+        }
+
+        const ssn = new SwedishSocialSecurityNumber('930101-1236', mockHelper)
+
+        expect(ssn.getSerialNumber()).toBe('1236')
     })
 
 });
